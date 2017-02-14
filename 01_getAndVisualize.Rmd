@@ -1,0 +1,237 @@
+---
+title: "Citizenship ballots"
+author: "Duc-Quang Nguyen | swissinfo.ch"
+date: " 2016"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: simplex
+---
+
+```{r setup, include=FALSE}
+generateOlderCitizenshipMap <- T
+langToExclude <- c('FR')
+translation.file <- "input/citizenship ballot - Sheet1.csv"
+vote.file <- "input/je-f-17.03.03.bw.609.c_slim.csv"
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(magrittr)
+library(countrycode)
+library(ggplot2)
+library(scales)
+library(swiMap)
+library(swiTheme)
+
+### Mapping 
+require(rgdal)
+require(rgeos)
+require(maptools)
+
+### Misc stuff
+require(classInt)
+require(viridis)
+```
+
+```{r load old ballot data}
+txt <- loadTranslation(translation.file)
+
+fBallot <- loadCommunesCHFederalBallot()
+#attr(fBallot, "ballotName")
+# get only naturalisation facilitée ballots
+cidx <- match(c("3150", "4110", "5100", "5110"), colnames(fBallot))
+
+# get canton shapefiles as a data.frame
+path.ch <- getPathShp('CH')
+layers <-  ogrListLayers(path.ch)
+mu <- readOGR(path.ch, layer = 'municipalities')
+mu.df <- formatShp(mu) %>% select(long, lat, group, BFS_NUMMER)
+r.idx <- match(mu.df$BFS_NUMMER, rownames(fBallot))
+
+ca <- readOGR(path.ch, layer = 'cantons')
+ca.df <- formatShp(ca) %>% select(long, lat, group, KANTONSNUM)
+
+
+# duplicate commune data.frame for each ballot
+df <- do.call(rbind, lapply(cidx, function(idx) {
+  value <- fBallot[,idx]
+  res <- mu.df
+  res$value <- value[r.idx]
+  res$ballot <- attr(fBallot, "ballotName")[idx]
+  res$date <- attr(fBallot, "date")[idx]
+  res
+}))
+#df$ballotDate <- paste0(df$date, df$ballot, sep = "  ")
+# plot maps
+brks <- seq(from = 0, to = 1, length.out = 11) * 100
+brks.lab <- c("< 10%", "10-20%", "20-30%", "30-40%", "40-50%",
+              "50-60%", "60-70%", "70-80%", "80-90%", "> 90%")
+df$bins <- cut(df$value, breaks = brks, right = F, labels = brks.lab)
+df$ballot <- factor(df$ballot, levels = attr(fBallot, "ballotName")[cidx])
+colors <- structure(swi_dpal2[-6], names = levels(df$bins))
+
+```
+
+```{r load new data}
+data.read <- read.csv(vote.file)
+r.idx <- match(mu.df$BFS_NUMMER, data.read$`No.commune`)
+
+dat <- mu.df
+dat$value <- data.read[r.idx, 'Oui.en..']
+dat$bins <- cut(dat$value, breaks = brks, right = F, labels = brks.lab)
+
+```
+
+```{r map}
+# helper mapping 
+colourText_bkbg <- 'black'
+
+bk_mapTheme <- function(
+  base_size = 14, base_family = "OpenSans-CondensedLight",
+  title_family = "OpenSans-CondensedBold", subtitle_family = "OpenSans-CondensedLight"
+ ) {
+     swi_theme(
+       y_gridlines = F, base_size = base_size, base_family = base_family, 
+       title_family = title_family, subtitle = subtitle_family
+     ) + 
+    theme(
+      legend.text = element_text(size = 6, hjust = 0.5),
+      legend.title = element_text(size = 7),
+      legend.key.width = unit(17, "lines"),
+      legend.key.height = unit(5, "lines"),
+      legend.position = "bottom",
+      legend.justification="center",
+      strip.text = element_text(family = base_family, colour = "#2F343B", size = 7),
+     # strip.background = element_rect(fill = "#f2f2f2"),
+      plot.caption=element_text(size = 7, hjust = 0, margin=margin(t=7, b = 3), color = '#737373'),
+      plot.subtitle=element_text(family = base_family, color = 'black', size = 10),
+      plot.title=element_text(family = title_family, size = 11, margin=margin(t=4, b=7)),
+      plot.margin = unit(c(0.2, 0.1, 0.1, 0), "cm")
+    ) 
+}
+themeNoLineTicks <- function() {
+  theme(
+    axis.line = element_blank(),
+    axis.ticks = element_blank(), 
+    axis.title = element_blank(), 
+    axis.text = element_blank()
+  )
+}
+  
+
+#test theme
+# ggplot(data = ca.df, aes(x = long, y = lat, group = group)) +
+#     geom_polygon(colour = "#2F343B", fill = NA, size = 0.2) + 
+#     scale_fill_identity() +
+#     coord_quickmap(expand = F) + bk_mapTheme() 
+
+df <- df[-which(is.na(df$bins)),]
+dat <- dat[-which(is.na(dat$bins)),]
+
+if(length(langToExclude) > 0) {
+  cat("\n", "Drop languages ", langToExclude)
+  cidx.rm <- which(colnames(txt) %in% langToExclude)
+  txt <- txt[,-cidx.rm, drop = F]
+}
+
+for(lang in colnames(txt)) {
+    
+   caption <- paste0(txt['source', lang], ": ", txt['source.name', lang], " | swissinfo.ch")
+   
+   ## 1. Latest citizenship vote  
+   yes <- data.frame(long = 5.95, lat = 47.7, group = 1, 
+              label = paste0("60.4", txt["annot.oui", lang]))
+   cantons <- yes
+   cantons$label <- paste0( txt["annot.cantons", lang], "\n", "17 vs 6")
+   cantons$lat <- 47.56
+   
+   map1 <- ggplot(data = dat, aes(x = long, y = lat, group = group)) +
+      geom_polygon(aes(fill = bins), colour = "white", size = 0) +
+      geom_polygon(data = ca.df, aes(x = long, y = lat, group = group), 
+                   fill = NA, colour = "white", size = 0.17) +
+      scale_fill_manual(values = colors, guide = guide_legend(nrow = 1, 
+        label.position = "bottom", title = "", title.position =  "top",
+        title.vjust = 1.3, label.vjust = -0.3)) +
+      coord_quickmap(expand = F) + 
+      bk_mapTheme(base_family = txt["base.font", lang], title_family = txt["title.font", lang], 
+                  subtitle_family = txt["base.font", lang]) +
+      themeNoLineTicks() + 
+      labs(caption = caption, subtitle = paste0(txt["descr1", lang], " ", txt["descr", lang]), 
+           title = paste0(strwrap(txt["title1", lang], width = 69), collapse = "\n"))
+  
+   map1a <- map1 + geom_text(
+      data = yes, aes(x = long, y = lat, group = group, label = label), 
+      hjust = 0, family =  txt["title.font", lang], size = 2.7
+    ) + geom_text(
+      data = cantons, aes(x = long, y = lat, group = group, label = label), 
+      hjust = 0, family =  txt["base.font", lang], size = 2.2, lineheight = 0.96
+    )
+   
+   png(paste0("citizenship_2017ballot_", lang, ".png"),  res = 270, pointsize = 1, height = 1050 * 1.1, 
+       width = 1100 * 1.1)
+   print(map1a)
+   dev.off()  
+  
+  if(generateOlderCitizenshipMap) {
+    # get the ballot translation
+    labels <- data.frame(
+      id = c("3150", "4110", "5100", "5110"),
+      ballotName = attr(fBallot, "ballotName")[cidx],
+      date = attr(fBallot, "date")[cidx],
+      label = txt[c("3150", "4110", "5100", "5110"), lang]
+    )
+    #wrap title
+    labels$label <- sapply(labels$label, function(tt) paste0(strwrap(tt, width = 42), collapse = "\n") )
+    df$label <- labels[match(df$ballot, labels$ballotName), 'label']
+    # year labels
+    date <- df %>% select(label, date) 
+    date <- cbind(date[!duplicated(date$label),], long = 10.3, lat = 47.7, group = 0.95)
+    
+    # yes percentage
+    yes <- date
+    yes$date <- paste0(txt[paste0(c("3150", "4110", "5100", "5110"), ".oui"),lang], txt["annot.oui", lang])
+    yes$long <- 5.95
+    # canton acceptants
+    cantons <- yes
+    cantons$date <- paste0( txt["annot.cantons", lang], "\n", 
+                            txt[paste0(c("3150", "4110", "5100", "5110"), ".cantons"),lang])
+    cantons$lat <- 47.5
+
+    map <- ggplot(data = df, aes(x = long, y = lat, group = group)) +
+      facet_wrap( ~ label, ncol = 2) +
+      geom_polygon(aes(fill = bins), colour = "white", size = 0) +
+      scale_fill_manual(values = colors, guide = guide_legend(nrow = 1, 
+        label.position = "bottom", title = "", title.position =  "top",
+        title.vjust = 1.3, label.vjust = 0)) +
+      coord_quickmap(expand = F) + 
+      bk_mapTheme(base_family = txt["base.font", lang], title_family = txt["title.font", lang], 
+                  subtitle_family = txt["base.font", lang]) +
+      themeNoLineTicks() + 
+      labs(caption = caption, subtitle = txt["descr", lang], 
+           title = paste0(strwrap(txt["main.title", lang], width = 67), collapse = "\n"))
+    
+    mapa <- map + geom_text(
+      data = date, aes(x = long, y = lat, group = group, 
+                       label = as.character(date)), hjust = 1, family =  txt["title.font", lang], 
+      size = 2.2
+    ) + geom_text(
+      data = yes, aes(x = long, y = lat, group = group, label = date), 
+      hjust = 0, family =  txt["title.font", lang], size = 2.2
+    ) + geom_text(
+      data = cantons, aes(x = long, y = lat, group = group, label = date), colour =  "#4d4d4d",
+      hjust = 0, family =  txt["base.font", lang], size = 1.65, lineheight = 0.87
+    )
+    
+    png(paste0("citizenship_ballots_", lang, ".png"),  res = 270, pointsize = 1, height = 1300 * 1.1, 
+        width = 1100 * 1.1)
+    print(mapa)
+    dev.off()       
+  }
+
+
+}
+
+
+```

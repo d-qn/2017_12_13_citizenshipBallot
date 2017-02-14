@@ -1,0 +1,24 @@
+code,EN,FR,DE,IT,PT,AR,RU,ES,JA,ZH
+title1,,Naturalisation facilitée des étrangers de la troisième génération,,,,,,,,
+descr1,,Votation fédérale du 12 février 2017.,,,,,,,,
+main.title,,Votations fédérales refusées pour faciliter la naturalisation,,,,,,,,
+descr,,Pourcentage de oui par commune.,,,,,,,,
+3150,,"Naturalisation facilitée pour les jeunes étrangers ayant grandis en Suisse, ainsi que pour les réfugiés et les apatrides",,,,,,,,
+4110,,Naturalisation facilitée pour les jeunes étrangers de deuxième génération,,,,,,,,
+5100,,Naturalisation facilitée pour les jeunes étrangers de la deuxième génération,,,,,,,,
+5110,,Octroi automatique de la nationalité aux étrangers de la troisième génération,,,,,,,,
+annot.oui,,% de oui,,,,,,,,
+annot.cantons,,Cantons acceptants,,,,,,,,
+source,Source,source,Quelle,Fonte,fonte,المصدر,Источник,Fuente,出典,来源
+source.name,,Office fédéral de la statistique,,,,,,,,
+code,Code,code,Code,Codice,código,الرمز,Код,código,コード,代码
+title.font,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,PingFang TC Regular,PingFang TC Regular
+base.font,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,PingFang TC Thin,PingFang TC Thin
+3150.oui,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8
+4110.oui,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8
+5100.oui,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2
+5110.oui,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4
+3150.cantons,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18
+4110.cantons,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13
+5100.cantons,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5
+5110.cantons,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5
