@@ -1,23 +1,23 @@
-code,EN,FR,DE,IT,PT,AR,RU,ES,JA,ZH
-title1,,Naturalisation facilitée des étrangers de la troisième génération,,Naturalizzazione agevolata degli stranieri della terza generazione,,,,,,
-descr1,,Votation fédérale du 12 février 2017.,,Votazione federale del 12 febbraio 2017,,,,,,
-main.title,,Votations fédérales refusées pour faciliter la naturalisation,,Progetti di naturalizzazione agevolata per gli stranieri bocciati in votazione popolare,,,,,,
-descr,,Pourcentage de oui par commune.,,Percentuale di sì per comune,,,,,,
-3150,,"Naturalisation facilitée pour les jeunes étrangers ayant grandis en Suisse, ainsi que pour les réfugiés et les apatrides",,"Naturalizzazione agevolata dei giovani stranieri cresciuti in Svizzera, dei rifugiati e degli apolidi",,,,,,
-4110,,Naturalisation facilitée pour les jeunes étrangers ayant grandis en Suisse,,Naturalizzazione agevolata dei giovani stranieri cresciuti in Svizzera,,,,,,
-5100,,Naturalisation facilitée pour les jeunes étrangers de la deuxième génération,,Naturalizzazione agevolata dei giovani stranieri della seconda generazione,,,,,,
-5110,,Octroi automatique de la nationalité aux étrangers de la troisième génération,,Naturalizzazione automatica degli stranieri di terza generazione ,,,,,,
-annot.oui,,% de oui,,% di sì,,,,,,
-annot.cantons,,Cantons acceptants,,Cantoni favorevoli,,,,,,
-source,Source,source,Quelle,Fonte,fonte,المصدر,Источник,Fuente,出典,来源
-source.name,,Office fédéral de la statistique,,Ufficio federale di statistica,,,,,,
-title.font,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,PingFang TC Regular,PingFang TC Regular
-base.font,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,PingFang TC Thin,PingFang TC Thin
-3150.oui,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8
-4110.oui,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8
-5100.oui,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2
-5110.oui,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4
-3150.cantons,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18
-4110.cantons,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13
-5100.cantons,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5
-5110.cantons,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5
+code,EN,FR,DE,IT,PT,RU,ES,JA,ZH,AR
+title1,Facilitated naturalisation of third-generation foreigners,Naturalisation facilitée des étrangers de la troisième génération,Erleichterte Einbürgerung der Ausländer der dritten Generation,Naturalizzazione agevolata degli stranieri della terza generazione,Naturalização facilitada dos estrangeiros de terceira geração,Упрощенная натурализация для иностранцев третьего поколения,Naturalización facilitada de la tercera generación de extranjeros,,第三代移民的简化入籍,التجنيس المُيسّر للأجانب من الجيل الثالث 
+descr1,"Federal vote of February 12, 2017;",Votation fédérale du 12 février 2017.,Abstimmung vom 12. Februar 2017.,Votazione federale del 12 febbraio 2017.,Votação federal de 12 de fevereiro de 2017.,Федеральный референдум 12 февраля 2017 г.,Votación federal del 12 de febrero de 2017.,,2017年2月12日瑞士全民公投,اقتراعات 12 فبراير 2017 الفدرالية 
+main.title,Federal votes that rejected facilited naturalisation,Votations fédérales refusées pour faciliter la naturalisation,Abgelehnte Volksinitiative zur erleichterten Einbürgerung,Progetti di naturalizzazione agevolata per gli stranieri bocciati in votazione popolare,Votações federais com propostas de facilitar a naturalização que foram refutadas nas urnas,"Федеральные референдумы, на которых упрощенная натурализация была отвергнута",Propuestas de naturalización facilitada rechazadas en votación popular,,在全民公投中被否决的简化入籍议案,اقتراعات فدرالية تم خلالها رفض التجنيس المُيسّر
+descr,Percentage of yes-votes by commune,Pourcentage de oui par commune.,Ja-Stimmenanteil in Prozent nach Gemeinden,Percentuale di sì per comune,"Porcentagem de ""sim"" por comuna.","Процент голосов ""за"" по общинам",Porcentaje de votos a favor por municipio,,各个市镇的投票赞成率,"نسبة التصويت بـ ""نعم"" حسب البلديات"
+3150,"Facilitated naturalisation for young foreigners who grew up in Switzerland, as well as refugees and stateless individuals","Naturalisation facilitée pour les jeunes étrangers ayant grandis en Suisse, ainsi que pour les réfugiés et les apatrides","Erleichterte Einbürgerung für junge, in der Schweiz aufgewachsene Ausländer sowie für Flüchtlinge und Staatenlose","Naturalizzazione agevolata dei giovani stranieri cresciuti in Svizzera, dei rifugiati e degli apolidi","Naturalização facilitada para os jovens estrangeiros que cresceram na Suíça, assim como para os refugiados e apátridas.","Упрощенная натурализация для молодых иностранцев, выросших в Швейцарии, а также для беженцев и апатридов","Naturalización facilitada de los jóvenes extranjeros nacidos en Suiza, de los refugiados y los apátridas",,在瑞士出生长大的外籍青年、 难民以及无国籍者的简化入籍,التجنيس المُيسّر للشبان الأجانب الذين كبروا في سويسرا وللاجئين ولمن هم بدون جنسية
+4110,Facilitated naturalisation for young foreigners who grew up in Switzerland,Naturalisation facilitée pour les jeunes étrangers ayant grandis en Suisse,"Erleichterte Einbürgerung für junge, in der Schweiz aufgewachsene Ausländer",Naturalizzazione agevolata dei giovani stranieri cresciuti in Svizzera,Naturalização facilitada para os jovens estrangeiros que cresceram na Suíça.,"Упрощенная натурализация для молодых иностранцев, выросших в Швейцарии",Naturalización facilitada de los jóvenes extranjeros criados en Suiza,,在瑞士出生长大的外籍青年简化入籍,التجنيس المُيسّر للشبان الأجانب الذين كبروا في سويسرا 
+5100,Facilitated naturalisation for young second-generation foreigners,Naturalisation facilitée pour les jeunes étrangers de la deuxième génération,Erleichterte Einbürgerung junger Ausländer der zweiten Generation,Naturalizzazione agevolata dei giovani stranieri della seconda generazione,Naturalização facilitada para os jovens estrangeiros da segunda geração.,Упрощенная натурализация для молодых иностранцев второго поколения,Naturalización facilitada de la segunda generación de extranjeros,,第二代外籍青年的简化入籍,التجنيس المُيسّر للشبان الأجانب من الجيل الثاني
+5110,Automatic citizenship for third-generation foreigners,Octroi automatique de la nationalité aux étrangers de la troisième génération,Automatische Einbürgerung der Ausländer der dritten Generation,Naturalizzazione automatica degli stranieri di terza generazione ,Naturalização automática para os estrangeiros da terceira geração.,Автоматическая натурализация для иностранцев третьего поколения,Naturalización automática de la tercera generación de extranjeros,,向第三代外籍移民自动颁发国籍,المنح الآلي للجنسية للأجانب من ابناء الجيل الثالث
+annot.oui,% of yes-votes,% de oui, Ja-Stimmenanteil in Prozent,% di sì,"% de ""sim""","% голосов ""за""",% de sí,,%赞成,"النسبة المائوية لـ ""نعم"""
+annot.cantons,Cantons in favour,Cantons acceptants,Zustimmende Kantone,Cantoni favorevoli,Cantões a favor,"Кантоны, поддержавшие инициативу",Cantones a favor,,赞成州,الكانتونات الموافقة 
+source,Source,source,Quelle,Fonte,fonte,Источник,Fuente,出典,来源,المصدر
+source.name,Federal Statistical Office,Office fédéral de la statistique,Bundesamt für Statistik,Ufficio federale di statistica,Departamento Federal de Estatísticas,Федеральное статистическое управление,Oficina Federal de Estadística,,瑞士联邦统计局,المكتب الفدرالي للإحصاء
+title.font,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,OpenSans-CondensedBold,PingFang TC Regular,PingFang TC Regular,
+base.font,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,OpenSans-CondensedLight,PingFang TC Thin,PingFang TC Thin,
+3150.oui,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8,44.8,
+4110.oui,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,
+5100.oui,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2,43.2,
+5110.oui,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4,48.4,
+3150.cantons,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,5 vs 18,
+4110.cantons,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,10 vs 13,
+5100.cantons,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,5.5 vs 17.5,
+5110.cantons,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,6.5 vs 16.5,

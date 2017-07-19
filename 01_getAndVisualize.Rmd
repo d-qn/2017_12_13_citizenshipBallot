@@ -11,7 +11,7 @@ output:
 
 ```{r setup, include=FALSE}
 generateOlderCitizenshipMap <- T
-langToExclude <- c('FR')
+langToExclude <- c('FR', 'IT', 'EN', 'PT', 'ES', 'RU', 'DE', 'ES')
 translation.file <- "input/citizenship ballot - Sheet1.csv"
 vote.file <- "input/je-f-17.03.03.bw.609.c_slim.csv"
 
@@ -183,8 +183,8 @@ for(lang in colnames(txt)) {
       label = txt[c("3150", "4110", "5100", "5110"), lang]
     )
     #wrap title
-    labels$label <- sapply(labels$label, function(tt) paste0(strwrap(tt, width = 42), collapse = "\n") )
-    df$label <- labels[match(df$ballot, labels$ballotName), 'label']
+    labels$label <- sapply(labels$label, function(tt) paste0(strwrap(tt, width = ifelse(lang == "ZH", 30, 42)), collapse = "\n") )
+    df$label <- factor(labels[match(df$ballot, labels$ballotName), 'label'], levels = labels$label)
     # year labels
     date <- df %>% select(label, date) 
     date <- cbind(date[!duplicated(date$label),], long = 10.3, lat = 47.7, group = 0.95)
@@ -210,7 +210,7 @@ for(lang in colnames(txt)) {
                   subtitle_family = txt["base.font", lang]) +
       themeNoLineTicks() + 
       labs(caption = caption, subtitle = txt["descr", lang], 
-           title = paste0(strwrap(txt["main.title", lang], width = 67), collapse = "\n"))
+           title = paste0(strwrap(txt["main.title", lang], width =  ifelse(lang == "RU", 58, 67)), collapse = "\n"))
     
     mapa <- map + geom_text(
       data = date, aes(x = long, y = lat, group = group, 

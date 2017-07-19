@@ -125,9 +125,9 @@ $(document).ready(function () {
 
 
 <pre class="r"><code>txt &lt;- loadTranslation(translation.file)</code></pre>
-<pre><code>## Warning in loadTranslation(translation.file): EN DE  PT  AR  RU  ES  JA  ZH languages will be discarded!</code></pre>
+<pre><code>## Warning in loadTranslation(translation.file): JA AR languages will be discarded!</code></pre>
 <pre><code>## 
-##  Remaining column names:  FR IT</code></pre>
+##  Remaining column names:  EN FR DE IT PT RU ES ZH</code></pre>
 <pre class="r"><code>fBallot &lt;- loadCommunesCHFederalBallot()
 #attr(fBallot, &quot;ballotName&quot;)
 # get only naturalisation facilitée ballots
@@ -221,11 +221,13 @@ df &lt;- df[-which(is.na(df$bins)),]
 dat &lt;- dat[-which(is.na(dat$bins)),]
 
 if(length(langToExclude) &gt; 0) {
+  cat(&quot;\n&quot;, &quot;Drop languages &quot;, langToExclude)
   cidx.rm &lt;- which(colnames(txt) %in% langToExclude)
   txt &lt;- txt[,-cidx.rm, drop = F]
-}
-
-for(lang in colnames(txt)) {
+}</code></pre>
+<pre><code>## 
+##  Drop languages  FR IT EN PT ES RU DE ES</code></pre>
+<pre class="r"><code>for(lang in colnames(txt)) {
     
    caption &lt;- paste0(txt['source', lang], &quot;: &quot;, txt['source.name', lang], &quot; | swissinfo.ch&quot;)
    
@@ -272,8 +274,8 @@ for(lang in colnames(txt)) {
       label = txt[c(&quot;3150&quot;, &quot;4110&quot;, &quot;5100&quot;, &quot;5110&quot;), lang]
     )
     #wrap title
-    labels$label &lt;- sapply(labels$label, function(tt) paste0(strwrap(tt, width = 42), collapse = &quot;\n&quot;) )
-    df$label &lt;- labels[match(df$ballot, labels$ballotName), 'label']
+    labels$label &lt;- sapply(labels$label, function(tt) paste0(strwrap(tt, width = ifelse(lang == &quot;ZH&quot;, 30, 42)), collapse = &quot;\n&quot;) )
+    df$label &lt;- factor(labels[match(df$ballot, labels$ballotName), 'label'], levels = labels$label)
     # year labels
     date &lt;- df %&gt;% select(label, date) 
     date &lt;- cbind(date[!duplicated(date$label),], long = 10.3, lat = 47.7, group = 0.95)
@@ -299,7 +301,7 @@ for(lang in colnames(txt)) {
                   subtitle_family = txt[&quot;base.font&quot;, lang]) +
       themeNoLineTicks() + 
       labs(caption = caption, subtitle = txt[&quot;descr&quot;, lang], 
-           title = paste0(strwrap(txt[&quot;main.title&quot;, lang], width = 67), collapse = &quot;\n&quot;))
+           title = paste0(strwrap(txt[&quot;main.title&quot;, lang], width =  ifelse(lang == &quot;RU&quot;, 58, 67)), collapse = &quot;\n&quot;))
     
     mapa &lt;- map + geom_text(
       data = date, aes(x = long, y = lat, group = group, 
